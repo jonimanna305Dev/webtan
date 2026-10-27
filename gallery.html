@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - WebTan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#090d16] text-white font-sans antialiased overflow-x-hidden selection:bg-[#00d8b4] selection:text-gray-950">
+
+    <!-- HEADER & NAVIGATION SECTION -->
+    <header class="sticky top-0 z-50 bg-[#0b0f19]/80 backdrop-blur-md border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-lg bg-[#00d8b4] flex items-center justify-center text-gray-950 font-bold text-xl shadow-lg shadow-[#00d8b4]/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white">Web<span class="text-[#00d8b4]">Tan</span></span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-[#00d8b4] transition-colors">Home</a>
+                
+                <!-- About Dropdown Menu -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1.5 hover:text-[#00d8b4] transition-colors py-2 focus:outline-none">
+                        <span>About</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </button>
+                    <div class="absolute top-full left-0 w-44 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-1">
+                        <div class="bg-[#111827] border border-gray-800/80 rounded-xl shadow-2xl py-2 flex flex-col backdrop-blur-xl">
+                            <a href="about.html" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Overview</a>
+                            <a href="team.html" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Team</a>
+                            <a href="partner.html" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Partner</a>
+                            <a href="about.html#blog" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="index.html#services" class="hover:text-[#00d8b4] transition-colors">Services</a>
+                <a href="index.html#projects" class="hover:text-[#00d8b4] transition-colors">Projects</a>
+                <a href="gallery.html" class="text-[#00d8b4] transition-colors">Gallery</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="index.html#quote" class="bg-[#00d8b4] hover:bg-[#00bf9e] text-gray-950 font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-[#00d8b4]/20 transition-all hover:scale-105">
+                    Get a Quote
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HERO HEADER -->
+    <section class="relative pt-16 pb-12 bg-[#0b0f19] border-b border-gray-800/40">
+        <div class="max-w-7xl mx-auto px-6 text-center animate__animated animate__fadeInDown">
+            <span class="text-xs font-semibold tracking-widest text-[#00d8b4] uppercase">VISUAL SHOWCASE</span>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 mb-4">OUR GALLERY</h1>
+            <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
+                Explore a curated collection of our latest UI/UX designs, web developments, and brand identity projects.
+            </p>
+            <div class="flex items-center justify-center gap-2 mt-6 text-xs text-gray-400">
+                <a href="index.html" class="hover:text-[#00d8b4] transition-colors">Home</a>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="text-[#00d8b4] font-semibold">Gallery</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY IMAGES ONLY SECTION -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="overflow-hidden rounded-2xl border border-gray-800/80 bg-[#111827] shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 1" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl border border-gray-800/80 bg-[#111827] shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 2" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl border border-gray-800/80 bg-[#111827] shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 3" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl border border-gray-800/80 bg-[#111827] shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 4" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl border border-gray-800/80 bg-[#111827] shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 5" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <div class="overflow-hidden rounded-2xl border border-gray-800/80 bg-[#111827] shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1542744094-3a31243364d0?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 6" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#070a12] border-t border-gray-800/60 py-12 text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-md bg-[#00d8b4] flex items-center justify-center text-gray-950 font-bold">
+                    <i class="fa-solid fa-code text-sm"></i>
+                </div>
+                <span class="text-lg font-bold text-white tracking-tight">Web<span class="text-[#00d8b4]">Tan</span></span>
+            </div>
+
+            <p>© 2026 WebTan. All rights reserved.</p>
+
+            <div class="flex items-center gap-5 text-sm">
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FILTER & MODAL SCRIPT -->
+    <script>
+        function filterGallery(category) {
+            // Update button styles
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-[#00d8b4]', 'text-gray-950', 'shadow-lg', 'shadow-[#00d8b4]/20');
+                btn.classList.add('bg-[#111827]', 'text-gray-300', 'border', 'border-gray-800');
+            });
+            event.target.classList.remove('bg-[#111827]', 'text-gray-300', 'border', 'border-gray-800');
+            event.target.classList.add('bg-[#00d8b4]', 'text-gray-950', 'shadow-lg', 'shadow-[#00d8b4]/20');
+
+            // Filter items
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(title, imgSrc, desc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('galleryModal').classList.remove('hidden');
+            document.getElementById('galleryModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('galleryModal').classList.remove('flex');
+            document.getElementById('galleryModal').classList.add('hidden');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

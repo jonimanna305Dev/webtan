@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - WebTan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body
+    class="bg-[#090d16] text-white font-sans antialiased overflow-x-hidden selection:bg-[#00d8b4] selection:text-gray-950 min-h-screen flex flex-col justify-between">
+
+    <!-- LOGIN SECTION (Image & Form in ONE Card without Header) -->
+    <section class="flex-grow flex items-center justify-center py-12 px-6">
+        <div class="max-w-4xl w-full">
+
+            <!-- SINGLE CARD CONTAINER -->
+            <div
+                class="bg-[#111827] border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12">
+
+                <!-- Left Side: Image inside the Card -->
+                <div class="lg:col-span-6 relative hidden lg:block h-full min-h-[500px]">
+                    <img src="../img/login.png" alt="WebTan Workspace" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/40 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 right-8 space-y-2">
+                        <span
+                            class="px-3 py-1 bg-[#00d8b4]/20 text-[#00d8b4] text-xs font-semibold rounded-full border border-[#00d8b4]/30">Client
+                            Portal</span>
+                        <h2 class="text-2xl font-extrabold text-white">Manage Your Digital Growth</h2>
+                        <p class="text-gray-300 text-xs leading-relaxed">Access real-time project metrics, communicate
+                            with developers, and track milestones effortlessly.</p>
+                    </div>
+                </div>
+
+                <!-- Right Side: Login Form inside the same Card -->
+                <div class="lg:col-span-6 p-8 sm:p-10 flex flex-col justify-center">
+
+                    <!-- Success State Banner (Hidden by default) -->
+                    <div id="loginSuccess"
+                        class="hidden bg-[#00d8b4]/10 border border-[#00d8b4]/40 rounded-xl p-6 text-center space-y-3 animate__animated animate__fadeIn">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[#00d8b4] text-gray-950 mx-auto flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Login Successful!</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm">Redirecting to your client dashboard...</p>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
+                        <div class="space-y-1 text-center mb-6">
+                            <h2 class="text-2xl font-bold text-white">Sign in to WebTan</h2>
+                            <p class="text-xs text-gray-400">Enter your account credentials below</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1.5">Email Address</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500">
+                                    <i class="fa-solid fa-envelope text-xs"></i>
+                                </span>
+                                <input type="email" id="loginEmail" required placeholder="you@company.com"
+                                    class="w-full bg-[#090d16] border border-gray-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-[#00d8b4] transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1.5"> Password </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500"> <i class="fa-solid fa-lock text-xs"></i></span>
+                                <input type="password" id="loginPassword" required placeholder="Password" class="w-full bg-[#090d16] border border-gray-800 rounded-xl pl-10 pr-12 py-3 text-sm text-white focus:outline-none focus:border-[#00d8b4] transition-colors">
+                                <span class="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer text-gray-400 hover:text-[#00d8b4]"
+                                    onclick="loginPassword.type = loginPassword.type === 'password' ? 'text' : 'password'; this.querySelector('i').classList.toggle('fa-eye'); this.querySelector('i').classList.toggle('fa-eye-slash')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs">
+                            <label class="flex items-center gap-2 cursor-pointer text-gray-400 hover:text-white">
+                                <input type="checkbox" class="accent-[#00d8b4] rounded">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="text-[#00d8b4] hover:underline">Forgot password?</a>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-[#00d8b4] hover:bg-[#00bf9e] text-gray-950 font-semibold py-3 rounded-xl shadow-lg shadow-[#00d8b4]/20 transition-all hover:scale-[1.01]">
+                            Sign In
+                        </button>
+
+                        <div class="relative flex py-1 items-center">
+                            <div class="flex-grow border-t border-gray-800"></div>
+                            <span class="flex-shrink mx-4 text-gray-500 text-[11px] uppercase tracking-wider">or
+                                continue with</span>
+                            <div class="flex-grow border-t border-gray-800"></div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" onclick="handleSocialLogin('Google')"
+                                class="flex items-center justify-center gap-2 bg-[#090d16] border border-gray-800 hover:border-gray-700 py-2 rounded-xl text-xs text-gray-300 font-medium transition-colors">
+                                <i class="fa-brands fa-google text-sm"></i> Google
+                            </button>
+                            <button type="button" onclick="handleSocialLogin('GitHub')"
+                                class="flex items-center justify-center gap-2 bg-[#090d16] border border-gray-800 hover:border-gray-700 py-2 rounded-xl text-xs text-gray-300 font-medium transition-colors">
+                                <i class="fa-brands fa-github text-sm"></i> GitHub
+                            </button>
+                        </div>
+
+                        <p class="text-center text-xs text-gray-400 pt-2">
+                            Don't have an account? <a href="register.html"
+                                class="text-[#00d8b4] font-semibold hover:underline">Request a project</a>
+                        </p>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#070a12] border-t border-gray-800/60 py-8 text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p>© 2026 WebTan. All rights reserved.</p>
+            <div class="flex items-center gap-5 text-sm">
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIN SCRIPT -->
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('loginSuccess').classList.remove('hidden');
+
+            setTimeout(() => {
+                window.location.href = './index.html';
+            }, 2000);
+        }
+
+        function handleSocialLogin(provider) {
+            alert('Connecting with ' + provider + '...');
+        }
+    </script>
+</body>
+
+</html>

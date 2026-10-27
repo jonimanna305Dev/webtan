@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebTan - Admin Dashboard Overview</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body
+    class="bg-[#0b0f19] text-gray-200 font-sans antialiased selection:bg-teal-500 selection:text-white min-h-screen flex overflow-x-hidden">
+
+    <!-- LEFT SIDEBAR (Fixed / Sticky) -->
+    <aside id="sidebar"
+        class="w-64 bg-[#111726] border-r border-gray-800/60 hidden lg:flex flex-col justify-between p-4 shrink-0 select-none transition-all duration-300 sticky top-0 h-screen z-40">
+        <div class="space-y-6">
+            <!-- Brand Logo & Minimize Toggle -->
+            <div class="flex items-center justify-between px-2 py-1">
+                <div class="flex items-center gap-3 sidebar-logo overflow-hidden">
+                    <div
+                        class="w-9 h-9 rounded-xl bg-teal-400 flex items-center justify-center text-gray-950 font-bold shadow-lg shadow-teal-500/20 shrink-0">
+                        <i class="fa-solid fa-code text-lg"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-wide sidebar-text whitespace-nowrap">Web<span
+                            class="text-teal-400">Tan</span></span>
+                </div>
+                <!-- Sidebar Minimize Button -->
+                <button id="toggleSidebar"
+                    class="text-gray-500 hover:text-gray-300 transition-colors focus:outline-none p-1.5 rounded-lg hover:bg-gray-800/50">
+                    <i id="toggleIcon" class="fa-solid fa-angles-left text-sm transition-transform duration-300"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1.5 font-medium text-sm">
+                <!-- Active Dashboard Link -->
+                <a href="index.html"
+                    class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl bg-teal-500/10 text-teal-400 border border-teal-500/20 shadow-sm transition-all">
+                    <i class="fa-solid fa-border-all text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Dashboard</span>
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                    <i class="fa-solid fa-chart-line text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Analytics</span>
+                </a>
+                <a href="project.html"
+                    class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                    <i class="fa-regular fa-folder-open text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Projects</span>
+                </a>
+                <a href="#"
+                    class="flex items-center justify-between px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                    <div class="flex items-center gap-3.5">
+                        <i class="fa-regular fa-user text-base shrink-0"></i>
+                        <span class="sidebar-text whitespace-nowrap">Team</span>
+                    </div>
+                    <span
+                        class="sidebar-text bg-teal-500/20 text-teal-400 text-xs px-2.5 py-0.5 rounded-full font-bold">1</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Bottom Links -->
+        <div class="space-y-1.5 font-medium text-sm border-t border-gray-800/60 pt-4">
+            <a href="#"
+                class="flex items-center justify-between px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                <div class="flex items-center gap-3.5">
+                    <i class="fa-solid fa-gear text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Settings</span>
+                </div>
+                <span
+                    class="sidebar-text w-2.5 h-2.5 rounded-full bg-teal-400 inline-block ring-2 ring-[#111726]"></span>
+            </a>
+            <a href="#"
+                class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                <i class="fa-regular fa-circle-question text-base shrink-0"></i>
+                <span class="sidebar-text whitespace-nowrap">Help</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+        <!-- HEADER TOPBAR -->
+        <header
+            class="h-20 border-b border-gray-800/60 bg-[#111726]/60 backdrop-blur-md px-6 flex items-center justify-between gap-4 sticky top-0 z-30">
+            <div class="flex items-center gap-4 flex-1">
+                <button class="text-gray-400 hover:text-white lg:hidden focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+
+                <!-- Search Bar -->
+                <div class="relative max-w-md w-full">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                    <input type="text" placeholder="Search..."
+                        class="w-full bg-[#182032] border border-gray-800 text-sm text-gray-200 placeholder-gray-500 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-teal-500/50 transition-all">
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-3">
+                <button
+                    class="relative p-2.5 rounded-xl bg-[#182032] border border-gray-800 text-gray-400 hover:text-white transition-all">
+                    <i class="fa-regular fa-envelope text-base"></i>
+                </button>
+                <button
+                    class="relative p-2.5 rounded-xl bg-[#182032] border border-gray-800 text-gray-400 hover:text-white transition-all">
+                    <i class="fa-regular fa-bell text-base"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-teal-400 rounded-full ring-2 ring-[#111726]"></span>
+                </button>
+
+                <!-- USER PROFILE WITH DROPDOWN -->
+                <div class="relative pl-3 border-l border-gray-800">
+                    <button id="userDropdownBtn" class="flex items-center gap-3 focus:outline-none group">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                            alt="User Profile"
+                            class="w-10 h-10 rounded-xl object-cover ring-2 ring-teal-500/30 group-hover:ring-teal-400 transition-all">
+                        <i
+                            class="fa-solid fa-chevron-down text-xs text-gray-400 group-hover:text-white transition-colors"></i>
+                    </button>
+
+                    <!-- User Menu Dropdown -->
+                    <div id="userDropdownMenu"
+                        class="hidden absolute right-0 mt-3 w-56 bg-[#111726] border border-gray-800/90 rounded-2xl shadow-2xl p-2 z-50 transition-all">
+                        <div class="px-3 py-2.5 border-b border-gray-800/80 mb-1">
+                            <p class="text-sm font-semibold text-white">Alex Morgan</p>
+                            <p class="text-xs text-teal-400 font-medium">Administrator</p>
+                        </div>
+                        <a href="#"
+                            class="flex items-center gap-3 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all">
+                            <i class="fa-regular fa-user text-gray-400"></i>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="#"
+                            class="flex items-center gap-3 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all">
+                            <i class="fa-solid fa-sliders text-gray-400"></i>
+                            <span>Account Settings</span>
+                        </a>
+                        <a href="#"
+                            class="flex items-center gap-3 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all">
+                            <i class="fa-regular fa-credit-card text-gray-400"></i>
+                            <span>Billing & Plans</span>
+                        </a>
+                        <div class="border-t border-gray-800/80 my-1 pt-1">
+                            <a href="#"
+                                class="flex items-center gap-3 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 rounded-xl transition-all">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- DASHBOARD MAIN CONTAINER -->
+        <main class="p-6 space-y-6 overflow-y-auto">
+
+            <!-- Title & Dropdown Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-white tracking-tight">Dashboard Overview</h1>
+                    <p class="text-xs text-gray-400 mt-1">Current Jan, 2026, 13:23 PM</p>
+                </div>
+                <button
+                    class="inline-flex items-center gap-2 bg-[#182032] border border-gray-800 text-gray-300 hover:text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all shadow-sm w-fit">
+                    <i class="fa-regular fa-calendar text-gray-400"></i>
+                    <span>Dashboard</span>
+                    <i class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
+                </button>
+            </div>
+
+            <!-- STATS CARDS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+                <!-- Card 1: Total Users -->
+                <div
+                    class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl relative overflow-hidden group hover:border-gray-700/80 transition-all">
+                    <div class="space-y-1.5 z-10">
+                        <div class="flex items-center gap-2 text-xs font-medium text-gray-400">
+                            <i class="fa-regular fa-user"></i>
+                            <span>Total Users</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white block">10.5K</span>
+                            <span class="text-xs text-teal-400 font-semibold inline-flex items-center gap-0.5 mt-1"><i
+                                    class="fa-solid fa-arrow-up text-[10px]"></i> +5%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shrink-0 shadow-lg shadow-teal-500/5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-users text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Card 2: Revenue -->
+                <div
+                    class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl relative overflow-hidden group hover:border-gray-700/80 transition-all">
+                    <div class="space-y-1.5 z-10">
+                        <div class="flex items-center gap-2 text-xs font-medium text-gray-400">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <span>Revenue</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white block">$85.2K</span>
+                            <span class="text-xs text-teal-400 font-semibold inline-flex items-center gap-0.5 mt-1"><i
+                                    class="fa-solid fa-arrow-up text-[10px]"></i> +12%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wallet text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Card 3: Active Projects -->
+                <div
+                    class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl relative overflow-hidden group hover:border-gray-700/80 transition-all">
+                    <div class="space-y-1.5 z-10">
+                        <div class="flex items-center gap-2 text-xs font-medium text-gray-400">
+                            <i class="fa-solid fa-globe"></i>
+                            <span>Active Projects</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white block">42</span>
+                            <span class="text-xs text-teal-400 font-semibold inline-flex items-center gap-0.5 mt-1"><i
+                                    class="fa-solid fa-arrow-up text-[10px]"></i> +2</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center shrink-0 shadow-lg shadow-sky-500/5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-diagram-project text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Card 4: New Signups -->
+                <div
+                    class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl relative overflow-hidden group hover:border-gray-700/80 transition-all">
+                    <div class="space-y-1.5 z-10">
+                        <div class="flex items-center gap-2 text-xs font-medium text-gray-400">
+                            <i class="fa-regular fa-user-plus"></i>
+                            <span>New Signups</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white block">1,200</span>
+                            <span class="text-xs text-teal-400 font-semibold inline-flex items-center gap-0.5 mt-1"><i
+                                    class="fa-solid fa-arrow-up text-[10px]"></i> +8%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-check text-lg"></i>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT FOR TOGGLES & CHARTS -->
+    <script>
+        // 1. SIDEBAR MINIMIZE TOGGLE FUNCTIONALITY
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const toggleIcon = document.getElementById('toggleIcon');
+        const sidebarTexts = document.querySelectorAll('.sidebar-text');
+
+        toggleBtn.addEventListener('click', () => {
+            const isMinimized = sidebar.classList.contains('w-20');
+
+            if (isMinimized) {
+                // Expand Sidebar
+                sidebar.classList.remove('w-20');
+                sidebar.classList.add('w-64');
+                toggleIcon.classList.remove('rotate-180');
+                sidebarTexts.forEach(el => el.classList.remove('hidden'));
+            } else {
+                // Minimize Sidebar
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-20');
+                toggleIcon.classList.add('rotate-180');
+                sidebarTexts.forEach(el => el.classList.add('hidden'));
+            }
+        });
+
+        // 2. USER DROPDOWN TOGGLE FUNCTIONALITY
+        const userBtn = document.getElementById('userDropdownBtn');
+        const userMenu = document.getElementById('userDropdownMenu');
+
+        userBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenu.contains(e.target) && !userBtn.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

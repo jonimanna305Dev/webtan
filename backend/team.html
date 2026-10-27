@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebTan - Team Management Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#0b0f19] text-gray-200 font-sans antialiased selection:bg-teal-500 selection:text-white min-h-screen flex overflow-x-hidden">
+
+    <!-- LEFT SIDEBAR (Fixed / Sticky & Non-Scrolling) -->
+    <aside id="sidebar" class="w-64 bg-[#111726] border-r border-gray-800/60 hidden lg:flex flex-col justify-between p-4 shrink-0 select-none transition-all duration-300 sticky top-0 h-screen z-40">
+        <div class="space-y-6">
+            <!-- Brand Logo & Minimize Toggle -->
+            <div class="flex items-center justify-between px-2 py-1">
+                <div class="flex items-center gap-3 sidebar-logo overflow-hidden">
+                    <div class="w-9 h-9 rounded-xl bg-teal-400 flex items-center justify-center text-gray-950 font-bold shadow-lg shadow-teal-500/20 shrink-0">
+                        <i class="fa-solid fa-code text-lg"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-wide sidebar-text whitespace-nowrap">Web<span class="text-teal-400">Tan</span></span>
+                </div>
+                <!-- Sidebar Minimize Button -->
+                <button id="toggleSidebar" class="text-gray-500 hover:text-gray-300 transition-colors focus:outline-none p-1.5 rounded-lg hover:bg-gray-800/50">
+                    <i id="toggleIcon" class="fa-solid fa-angles-left text-sm transition-transform duration-300"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1.5 font-medium text-sm">
+                <a href="admin-dashboard.html" class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                    <i class="fa-solid fa-border-all text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Overview</span>
+                </a>
+                <a href="#" class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                    <i class="fa-solid fa-chart-line text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Analytics</span>
+                </a>
+                <a href="projects.html" class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                    <i class="fa-regular fa-folder-open text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Projects</span>
+                </a>
+                <!-- Active Team Link -->
+                <a href="team.html" class="flex items-center justify-between px-3.5 py-3 rounded-xl bg-teal-500/10 text-teal-400 border border-teal-500/20 shadow-sm transition-all">
+                    <div class="flex items-center gap-3.5">
+                        <i class="fa-regular fa-user text-base shrink-0"></i>
+                        <span class="sidebar-text whitespace-nowrap">Team</span>
+                    </div>
+                    <span class="sidebar-text bg-teal-500/20 text-teal-400 text-xs px-2.5 py-0.5 rounded-full font-bold">6</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Bottom Links -->
+        <div class="space-y-1.5 font-medium text-sm border-t border-gray-800/60 pt-4">
+            <a href="#" class="flex items-center justify-between px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                <div class="flex items-center gap-3.5">
+                    <i class="fa-solid fa-gear text-base shrink-0"></i>
+                    <span class="sidebar-text whitespace-nowrap">Settings</span>
+                </div>
+                <span class="sidebar-text w-2.5 h-2.5 rounded-full bg-teal-400 inline-block ring-2 ring-[#111726]"></span>
+            </a>
+            <a href="#" class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
+                <i class="fa-regular fa-circle-question text-base shrink-0"></i>
+                <span class="sidebar-text whitespace-nowrap">Help</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+        <!-- HEADER TOPBAR -->
+        <header class="h-20 border-b border-gray-800/60 bg-[#111726]/60 backdrop-blur-md px-6 flex items-center justify-between gap-4 sticky top-0 z-30">
+            <div class="flex items-center gap-4 flex-1">
+                <button class="text-gray-400 hover:text-white lg:hidden focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Search Bar -->
+                <div class="relative max-w-md w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                    <input type="text" placeholder="Search team members, roles..." class="w-full bg-[#182032] border border-gray-800 text-sm text-gray-200 placeholder-gray-500 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-teal-500/50 transition-all">
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-3">
+                <button class="relative p-2.5 rounded-xl bg-[#182032] border border-gray-800 text-gray-400 hover:text-white transition-all">
+                    <i class="fa-regular fa-envelope text-base"></i>
+                </button>
+                <button class="relative p-2.5 rounded-xl bg-[#182032] border border-gray-800 text-gray-400 hover:text-white transition-all">
+                    <i class="fa-regular fa-bell text-base"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-teal-400 rounded-full ring-2 ring-[#111726]"></span>
+                </button>
+
+                <!-- USER PROFILE WITH DROPDOWN -->
+                <div class="relative pl-3 border-l border-gray-800">
+                    <button id="userDropdownBtn" class="flex items-center gap-3 focus:outline-none group">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="User Profile" class="w-10 h-10 rounded-xl object-cover ring-2 ring-teal-500/30 group-hover:ring-teal-400 transition-all">
+                        <i class="fa-solid fa-chevron-down text-xs text-gray-400 group-hover:text-white transition-colors"></i>
+                    </button>
+
+                    <!-- User Menu Dropdown -->
+                    <div id="userDropdownMenu" class="hidden absolute right-0 mt-3 w-56 bg-[#111726] border border-gray-800/90 rounded-2xl shadow-2xl p-2 z-50 transition-all">
+                        <div class="px-3 py-2.5 border-b border-gray-800/80 mb-1">
+                            <p class="text-sm font-semibold text-white">Alex Morgan</p>
+                            <p class="text-xs text-teal-400 font-medium">Administrator</p>
+                        </div>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all">
+                            <i class="fa-regular fa-user text-gray-400"></i>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all">
+                            <i class="fa-solid fa-sliders text-gray-400"></i>
+                            <span>Account Settings</span>
+                        </a>
+                        <div class="border-t border-gray-800/80 my-1 pt-1">
+                            <a href="#" class="flex items-center gap-3 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 rounded-xl transition-all">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- DASHBOARD MAIN CONTAINER -->
+        <main class="p-6 space-y-6 overflow-y-auto">
+
+            <!-- Title & Create New Team Action -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-white tracking-tight">Team Management</h1>
+                    <p class="text-xs text-gray-400 mt-1">Manage team members, roles, permissions, and status</p>
+                </div>
+                <button id="openCreateModalBtn" class="inline-flex items-center gap-2 bg-teal-400 hover:bg-teal-300 text-gray-950 px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-teal-500/20 w-fit">
+                    <i class="fa-solid fa-user-plus text-xs"></i>
+                    <span>Create New Team</span>
+                </button>
+            </div>
+
+            <!-- METRICS CARDS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl">
+                    <div class="space-y-1">
+                        <span class="text-xs text-gray-400 font-medium">Total Members</span>
+                        <div class="text-2xl font-bold text-white">6</div>
+                        <span class="text-[11px] text-teal-400 font-semibold"><i class="fa-solid fa-arrow-up"></i> +1 this month</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+
+                <div class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl">
+                    <div class="space-y-1">
+                        <span class="text-xs text-gray-400 font-medium">Active Now</span>
+                        <div class="text-2xl font-bold text-white">5</div>
+                        <span class="text-[11px] text-emerald-400 font-semibold">Online on workspace</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-signal"></i>
+                    </div>
+                </div>
+
+                <div class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl">
+                    <div class="space-y-1">
+                        <span class="text-xs text-gray-400 font-medium">Developers</span>
+                        <div class="text-2xl font-bold text-white">4</div>
+                        <span class="text-[11px] text-blue-400 font-semibold">Frontend & Backend</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                </div>
+
+                <div class="bg-[#111726] border border-gray-800/80 rounded-2xl p-4 flex items-center justify-between shadow-xl">
+                    <div class="space-y-1">
+                        <span class="text-xs text-gray-400 font-medium">Designers & PM</span>
+                        <div class="text-2xl font-bold text-white">2</div>
+                        <span class="text-[11px] text-amber-400 font-semibold">UI/UX & Leadership</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEAM MEMBERS TABLE CONTAINER -->
+            <div class="bg-[#111726] border border-gray-800/80 rounded-2xl p-5 shadow-xl space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-base font-semibold text-white">Workspace Members</h2>
+                    <span class="text-xs text-gray-400 bg-[#182032] border border-gray-800 px-3 py-1 rounded-lg">Showing 6 Members</span>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-visible">
+                    <table class="w-full text-left text-sm text-gray-300">
+                        <thead class="text-xs uppercase bg-[#182032]/60 text-gray-400 border-b border-gray-800">
+                            <tr>
+                                <th class="py-3 px-4 rounded-l-xl">Name & Email</th>
+                                <th class="py-3 px-4">Role</th>
+                                <th class="py-3 px-4">Department</th>
+                                <th class="py-3 px-4">Status</th>
+                                <th class="py-3 px-4 text-right rounded-r-xl">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800/60 font-medium">
+                            <!-- Member 1 -->
+                            <tr class="hover:bg-gray-800/20 transition-colors">
+                                <td class="py-3.5 px-4 flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" class="w-9 h-9 rounded-xl object-cover">
+                                    <div>
+                                        <p class="font-bold text-white text-sm">Alex Morgan</p>
+                                        <p class="text-xs text-gray-400">alex.morgan@webtan.io</p>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 px-4 text-gray-300">Administrator</td>
+                                <td class="py-3.5 px-4">
+                                    <span class="px-2 py-0.5 bg-gray-800 border border-gray-700 rounded text-[11px] font-mono text-gray-300">Management</span>
+                                </td>
+                                <td class="py-3.5 px-4">
+                                    <span class="px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active</span>
+                                </td>
+                                <td class="py-3.5 px-4 text-right relative">
+                                    <button class="action-dropdown-btn text-gray-400 hover:text-white p-1.5 focus:outline-none"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    <!-- Dropdown Menu -->
+                                    <div class="action-dropdown-menu hidden absolute right-8 top-10 w-36 bg-[#111726] border border-gray-800 rounded-xl shadow-2xl py-1 z-30 text-left">
+                                        <button onclick="openEditModal('Alex Morgan', 'alex.morgan@webtan.io', 'Administrator', 'Management')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/60 transition-colors">
+                                            <i class="fa-regular fa-pen-to-square text-teal-400"></i> Edit
+                                        </button>
+                                        <button onclick="openDeleteModal('Alex Morgan')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 transition-colors">
+                                            <i class="fa-regular fa-trash-can"></i> Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Member 2 -->
+                            <tr class="hover:bg-gray-800/20 transition-colors">
+                                <td class="py-3.5 px-4 flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="" class="w-9 h-9 rounded-xl object-cover">
+                                    <div>
+                                        <p class="font-bold text-white text-sm">David Chen</p>
+                                        <p class="text-xs text-gray-400">david.c@webtan.io</p>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 px-4 text-gray-300">Senior Fullstack Developer</td>
+                                <td class="py-3.5 px-4">
+                                    <span class="px-2 py-0.5 bg-gray-800 border border-gray-700 rounded text-[11px] font-mono text-gray-300">Engineering</span>
+                                </td>
+                                <td class="py-3.5 px-4">
+                                    <span class="px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active</span>
+                                </td>
+                                <td class="py-3.5 px-4 text-right relative">
+                                    <button class="action-dropdown-btn text-gray-400 hover:text-white p-1.5 focus:outline-none"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    <!-- Dropdown Menu -->
+                                    <div class="action-dropdown-menu hidden absolute right-8 top-10 w-36 bg-[#111726] border border-gray-800 rounded-xl shadow-2xl py-1 z-30 text-left">
+                                        <button onclick="openEditModal('David Chen', 'david.c@webtan.io', 'Senior Fullstack Developer', 'Engineering')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/60 transition-colors">
+                                            <i class="fa-regular fa-pen-to-square text-teal-400"></i> Edit
+                                        </button>
+                                        <button onclick="openDeleteModal('David Chen')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 transition-colors">
+                                            <i class="fa-regular fa-trash-can"></i> Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Member 3 -->
+                            <tr class="hover:bg-gray-800/20 transition-colors">
+                                <td class="py-3.5 px-4 flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="" class="w-9 h-9 rounded-xl object-cover">
+                                    <div>
+                                        <p class="font-bold text-white text-sm">Sarah Jenkins</p>
+                                        <p class="text-xs text-gray-400">sarah.j@webtan.io</p>
+                                    </div>
+                                </td>
+                                <td class="py-3.5 px-4 text-gray-300">Lead UI/UX Designer</td>
+                                <td class="py-3.5 px-4">
+                                    <span class="px-2 py-0.5 bg-gray-800 border border-gray-700 rounded text-[11px] font-mono text-gray-300">Design</span>
+                                </td>
+                                <td class="py-3.5 px-4">
+                                    <span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-full text-xs font-semibold inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Away</span>
+                                </td>
+                                <td class="py-3.5 px-4 text-right relative">
+                                    <button class="action-dropdown-btn text-gray-400 hover:text-white p-1.5 focus:outline-none"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    <!-- Dropdown Menu -->
+                                    <div class="action-dropdown-menu hidden absolute right-8 top-10 w-36 bg-[#111726] border border-gray-800 rounded-xl shadow-2xl py-1 z-30 text-left">
+                                        <button onclick="openEditModal('Sarah Jenkins', 'sarah.j@webtan.io', 'Lead UI/UX Designer', 'Design')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-gray-300 hover:text-white hover:bg-gray-800/60 transition-colors">
+                                            <i class="fa-regular fa-pen-to-square text-teal-400"></i> Edit
+                                        </button>
+                                        <button onclick="openDeleteModal('Sarah Jenkins')" class="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 transition-colors">
+                                            <i class="fa-regular fa-trash-can"></i> Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- 1. Create New Team Modal -->
+    <div id="createModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#111726] border border-gray-800 rounded-2xl w-full max-w-lg shadow-2xl p-6 space-y-5">
+            <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-user-plus text-teal-400"></i> Create New Team
+                </h3>
+                <button id="closeCreateModalBtn" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Full Name</label>
+                        <input type="text" placeholder="John Doe" class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Email Address</label>
+                        <input type="email" placeholder="john@webtan.io" class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Role</label>
+                        <input type="text" placeholder="Frontend Developer" class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Department</label>
+                        <select class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                            <option>Engineering</option>
+                            <option>Design</option>
+                            <option>Management</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3 pt-3 border-t border-gray-800">
+                    <button type="button" id="cancelCreateBtn" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-xl text-xs font-semibold transition-all">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-teal-400 hover:bg-teal-300 text-gray-950 rounded-xl text-xs font-bold transition-all shadow-lg shadow-teal-500/20">Save Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Edit Team Member Modal -->
+    <div id="editModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#111726] border border-gray-800 rounded-2xl w-full max-w-lg shadow-2xl p-6 space-y-5">
+            <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-regular fa-pen-to-square text-teal-400"></i> Edit Team Member
+                </h3>
+                <button onclick="closeEditModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Full Name</label>
+                        <input type="text" id="editName" class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Email Address</label>
+                        <input type="email" id="editEmail" class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Role</label>
+                        <input type="text" id="editRole" class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Department</label>
+                        <input type="text" id="editDept" class="w-full bg-[#182032] border border-gray-800 rounded-xl px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-teal-500">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-3 pt-3 border-t border-gray-800">
+                    <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-xl text-xs font-semibold transition-all">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-teal-400 hover:bg-teal-300 text-gray-950 rounded-xl text-xs font-bold transition-all shadow-lg shadow-teal-500/20">Update Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#111726] border border-gray-800 rounded-2xl w-full max-w-sm shadow-2xl p-6 text-center space-y-4">
+            <div class="w-12 h-12 bg-red-500/10 border border-red-500/20 text-red-400 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                <i class="fa-regular fa-trash-can"></i>
+            </div>
+            <div>
+                <h3 class="text-base font-bold text-white">Remove Team Member</h3>
+                <p class="text-xs text-gray-400 mt-1">Are you sure you want to remove <span id="deleteMemberName" class="text-white font-semibold"></span> from workspace access?</p>
+            </div>
+            <div class="flex justify-center gap-3 pt-2">
+                <button type="button" onclick="closeDeleteModal()" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-xl text-xs font-semibold transition-all">Cancel</button>
+                <button type="button" onclick="confirmDelete()" class="px-5 py-2 bg-red-500 hover:bg-red-400 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-red-500/20">Yes, Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR SIDEBAR, DROPDOWNS & MODALS -->
+    <script>
+        // 1. Sidebar Minimize Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const toggleIcon = document.getElementById('toggleIcon');
+        const sidebarTexts = document.querySelectorAll('.sidebar-text');
+
+        toggleBtn.addEventListener('click', () => {
+            const isMinimized = sidebar.classList.contains('w-20');
+            if (isMinimized) {
+                sidebar.classList.remove('w-20');
+                sidebar.classList.add('w-64');
+                toggleIcon.classList.remove('rotate-180');
+                sidebarTexts.forEach(el => el.classList.remove('hidden'));
+            } else {
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-20');
+                toggleIcon.classList.add('rotate-180');
+                sidebarTexts.forEach(el => el.classList.add('hidden'));
+            }
+        });
+
+        // 2. User Profile Dropdown
+        const userBtn = document.getElementById('userDropdownBtn');
+        const userMenu = document.getElementById('userDropdownMenu');
+
+        userBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        // 3. 3-Dot Action Menus in Table
+        const actionBtns = document.querySelectorAll('.action-dropdown-btn');
+        actionBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.action-dropdown-menu').forEach(menu => {
+                    if (menu !== btn.nextElementSibling) menu.classList.add('hidden');
+                });
+                const menu = btn.nextElementSibling;
+                menu.classList.toggle('hidden');
+            });
+        });
+
+        document.addEventListener('click', () => {
+            userMenu.classList.add('hidden');
+            document.querySelectorAll('.action-dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+        });
+
+        // 4. Create Modal Handlers
+        const createModal = document.getElementById('createModal');
+        document.getElementById('openCreateModalBtn').addEventListener('click', () => createModal.classList.remove('hidden'));
+        document.getElementById('closeCreateModalBtn').addEventListener('click', () => createModal.classList.add('hidden'));
+        document.getElementById('cancelCreateBtn').addEventListener('click', () => createModal.classList.add('hidden'));
+
+        // 5. Edit Modal Handlers
+        const editModal = document.getElementById('editModal');
+        function openEditModal(name, email, role, dept) {
+            document.getElementById('editName').value = name;
+            document.getElementById('editEmail').value = email;
+            document.getElementById('editRole').value = role;
+            document.getElementById('editDept').value = dept;
+            editModal.classList.remove('hidden');
+        }
+        function closeEditModal() {
+            editModal.classList.add('hidden');
+        }
+
+        // 6. Delete Modal Handlers
+        const deleteModal = document.getElementById('deleteModal');
+        function openDeleteModal(name) {
+            document.getElementById('deleteMemberName').innerText = name;
+            deleteModal.classList.remove('hidden');
+        }
+        function closeDeleteModal() {
+            deleteModal.classList.add('hidden');
+        }
+        function confirmDelete() {
+            alert('Team member removed successfully!');
+            deleteModal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

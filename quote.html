@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote - WebTan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#090d16] text-white font-sans antialiased overflow-x-hidden selection:bg-[#00d8b4] selection:text-gray-950">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-[#0b0f19]/80 backdrop-blur-md border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-lg bg-[#00d8b4] flex items-center justify-center text-gray-950 font-bold text-xl shadow-lg shadow-[#00d8b4]/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white">Web<span class="text-[#00d8b4]">Tan</span></span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-[#00d8b4] transition-colors">Home</a>
+                
+                <!-- About Dropdown Menu -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1.5 hover:text-[#00d8b4] transition-colors py-2 focus:outline-none">
+                        <span>About</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                    </button>
+                    <div class="absolute top-full left-0 w-44 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-1">
+                        <div class="bg-[#111827] border border-gray-800/80 rounded-xl shadow-2xl py-2 flex flex-col backdrop-blur-xl">
+                            <a href="about.html" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Overview</a>
+                            <a href="team.html" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Team</a>
+                            <a href="partner.html" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Partner</a>
+                            <a href="about.html#blog" class="px-4 py-2 hover:bg-[#00d8b4]/10 hover:text-[#00d8b4] transition-colors text-gray-300">Blog</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="services.html" class="hover:text-[#00d8b4] transition-colors">Services</a>
+                <a href="projects.html" class="hover:text-[#00d8b4] transition-colors">Projects</a>
+                <a href="gallery.html" class="hover:text-[#00d8b4] transition-colors">Gallery</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="quote.html" class="bg-[#00d8b4] hover:bg-[#00bf9e] text-gray-950 font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-[#00d8b4]/20 transition-all hover:scale-105">
+                    Get a Quote
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HERO HEADER -->
+    <section class="relative pt-16 pb-12 bg-[#0b0f19] border-b border-gray-800/40">
+        <div class="max-w-7xl mx-auto px-6 text-center animate__animated animate__fadeInDown">
+            <span class="text-xs font-semibold tracking-widest text-[#00d8b4] uppercase">START YOUR PROJECT</span>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 mb-4">GET A QUOTE</h1>
+            <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
+                Ready to elevate your digital presence? Send us your project details today and let's build something remarkable together.
+            </p>
+            <div class="flex items-center justify-center gap-2 mt-6 text-xs text-gray-400">
+                <a href="index.html" class="hover:text-[#00d8b4] transition-colors">Home</a>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="text-[#00d8b4] font-semibold">Get a Quote</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE FORM SECTION -->
+    <section class="py-20 relative">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="bg-[#111827] border border-gray-800/80 rounded-2xl p-8 sm:p-12 shadow-2xl relative">
+                
+                <!-- Success Message Banner (Hidden by default) -->
+                <div id="successMessage" class="hidden bg-[#00d8b4]/10 border border-[#00d8b4]/40 rounded-xl p-6 text-center space-y-3 animate__animated animate__fadeIn">
+                    <div class="w-12 h-12 rounded-full bg-[#00d8b4] text-gray-950 mx-auto flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Request Received Successfully!</h3>
+                    <p class="text-gray-300 text-xs sm:text-sm">Thank you for reaching out to WebTan. Our team will review your requirements and get back to you within 24 hours.</p>
+                    <button onclick="resetForm()" class="mt-4 bg-[#00d8b4] hover:bg-[#00bf9e] text-gray-950 font-semibold px-5 py-2 rounded-xl text-xs transition-all">
+                        Send Another Request
+                    </button>
+                </div>
+
+                <!-- Actual Form -->
+                <form id="quoteForm" class="space-y-6" onsubmit="handleQuoteSubmit(event)">
+                    <div class="space-y-1">
+                        <span class="text-xs font-semibold tracking-widest text-[#00d8b4] uppercase">PROJECT INQUIRY</span>
+                        <h2 class="text-2xl font-bold text-white">Tell us about your project</h2>
+                    </div>
+
+                    <!-- Name & Email -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1.5">Your Name</label>
+                            <input type="text" id="userName" required placeholder="John Doe" class="w-full bg-[#090d16] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00d8b4] transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1.5">Your Email</label>
+                            <input type="email" id="userEmail" required placeholder="john@company.com" class="w-full bg-[#090d16] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00d8b4] transition-colors">
+                        </div>
+                    </div>
+
+                    <!-- Services Interested In -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-2">Services Needed</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 bg-[#090d16] border border-gray-800 p-3 rounded-xl cursor-pointer hover:border-[#00d8b4]/50 transition-colors">
+                                <input type="checkbox" name="service" value="Web Design" class="accent-[#00d8b4]">
+                                <span class="text-xs text-gray-300 font-medium">Web Design</span>
+                            </label>
+                            <label class="flex items-center gap-3 bg-[#090d16] border border-gray-800 p-3 rounded-xl cursor-pointer hover:border-[#00d8b4]/50 transition-colors">
+                                <input type="checkbox" name="service" value="Development" class="accent-[#00d8b4]">
+                                <span class="text-xs text-gray-300 font-medium">Development</span>
+                            </label>
+                            <label class="flex items-center gap-3 bg-[#090d16] border border-gray-800 p-3 rounded-xl cursor-pointer hover:border-[#00d8b4]/50 transition-colors">
+                                <input type="checkbox" name="service" value="SEO & Marketing" class="accent-[#00d8b4]">
+                                <span class="text-xs text-gray-300 font-medium">SEO & Marketing</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Budget Range -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-1.5">Estimated Budget (USD)</label>
+                        <select id="userBudget" class="w-full bg-[#090d16] border border-gray-800 rounded-xl px-4 py-3 text-sm text-gray-300 focus:outline-none focus:border-[#00d8b4] transition-colors">
+                            <option value="$1,000 - $3,000">$1,000 - $3,000</option>
+                            <option value="$3,000 - $6,000">$3,000 - $6,000</option>
+                            <option value="$6,000 - $10,000+">$6,000 - $10,000+</option>
+                            <option value="Enterprise / Custom">Enterprise / Custom</option>
+                        </select>
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-1.5">Project Details & Goals</label>
+                        <textarea id="userMessage" rows="4" required placeholder="Describe your vision, goals, or reference websites..." class="w-full bg-[#090d16] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00d8b4] transition-colors"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-[#00d8b4] hover:bg-[#00bf9e] text-gray-950 font-semibold py-3.5 rounded-xl shadow-lg shadow-[#00d8b4]/20 transition-all hover:scale-[1.01]">
+                        Send Project Request
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#070a12] border-t border-gray-800/60 py-12 text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-md bg-[#00d8b4] flex items-center justify-center text-gray-950 font-bold">
+                    <i class="fa-solid fa-code text-sm"></i>
+                </div>
+                <span class="text-lg font-bold text-white tracking-tight">Web<span class="text-[#00d8b4]">Tan</span></span>
+            </div>
+
+            <p>© 2026 WebTan. All rights reserved.</p>
+
+            <div class="flex items-center gap-5 text-sm">
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-[#00d8b4] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SUBMISSION SCRIPT -->
+    <script>
+        function handleQuoteSubmit(event) {
+            event.preventDefault();
+            document.getElementById('quoteForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+        }
+
+        function resetForm() {
+            document.getElementById('quoteForm').reset();
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('quoteForm').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
